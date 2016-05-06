@@ -7,3 +7,11 @@ from .models import *
 
 def index(request):
     return HttpResponse("I'm in customer");
+
+def register(request):
+    context = {}
+    return render(request, "customer/register.html", context)
+
+def login(request):
+    context = {}
+    return render(request, "customer/login.html", context)
