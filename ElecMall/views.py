@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("Hello, Welcome to the ElecMall!!")
+    context = {}
+    return render(request, 'ElecMall/index.html', context)
