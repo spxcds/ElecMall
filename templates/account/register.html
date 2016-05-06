@@ -1,0 +1,14 @@
+<html>
+<h1>
+    <a href='/'>返回首页</a>
+    注册
+</h1>
+
+<form method='post'>
+    {% csrf_token %}
+    {{ userform.as_p }}
+    <input type='submit' value='OK' />
+</form>
+
+
+</html>
