@@ -4,8 +4,7 @@ from __future__ import unicode_literals
 import urllib
 import functools
 from functools import wraps
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, request
 
 from utils.shortcuts import info_page
 from .models import Customer
@@ -29,6 +28,7 @@ class BasePermissionDecorator(object):
             self.request.user = user
             return self.func(*args, **kwargs)
         else:
+            print '+++++++++++++++++++++++++++++'
             return info_page(request, '请先登录')
 
     def check_permission(self):

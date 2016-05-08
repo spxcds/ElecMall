@@ -12,5 +12,8 @@ class Customer(models.Model):
     Email = models.EmailField(max_length=30)
     Password = models.CharField(max_length=20)
 
+    class META:
+        db_table = 'customer'
+
     def __str__(self):
         return self.Nickname

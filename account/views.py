@@ -44,7 +44,7 @@ class UserLoginView(View):
                 user = Customer.objects.get(Email=data["Email"], Password=data["Password"])
                 request.session["user_id"] = user.Id
                 return info_page(request, "登录成功")
-            except WuuyunUser.DoesNotExist:
+            except Customer.DoesNotExist:
                 return info_page(request, "用户名或密码错误")
         else:
             return info_page(request, "数据格式不合法")
