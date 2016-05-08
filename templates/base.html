@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>
+        ElecMall
+    </title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/todc-bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/global.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- nav begin -->
+<nav class="navbar navbar-masthead navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ElecMall</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/latest_leak/">A</a></li>
+                <li><a href="/report/">B</a></li>
+            </ul>
+            {% if request.session.user_id %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            设置
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {% if request.wuuyun_user.role %}
+                                <li><a href="/admin/report_list/">后台管理</a></li>
+                                <li role="separator" class="divider"></li>
+                            {% endif %}
+                            <li><a href="/account/settings/">个人信息</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout/">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/login/">
+                            登录
+                        </a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<!-- nav end -->
+
+<!-- custom body begin -->
+{% block body %}{% endblock %}
+<!-- custom body end -->
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+{% block js_block %}{% endblock %}
+<!-- footer begin -->
+<div class="footer">
+    <p class="text-muted text-center">Copyright © 2016 <a href="https://github.com">spxcds</a></p>
+</div>
+<!-- footer end -->
+</body>
+</html>

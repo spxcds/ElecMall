@@ -5,11 +5,11 @@ from django.db import models
 # Create your models here.
 
 class Customer(models.Model):
-    Username = models.CharField(default=None, max_length=30)
-    Nickname = models.CharField(default=None, max_length=30)
-    Telephone = models.CharField(default=None, max_length=11)
+    Username = models.CharField(max_length=30)
+    Nickname = models.CharField(max_length=30)
+    Telephone = models.CharField(max_length=11)
     Email = models.EmailField
-    Password = models.CharField(default=None, max_length=20)
+    Password = models.CharField(max_length=20)
 
     def __str__(self):
         return self.Nickname

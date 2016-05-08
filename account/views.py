@@ -1,47 +1,82 @@
 # coding=utf-8
-from django.shortcuts import render, get_object_or_404
-from django import forms
-from django.http import HttpResponseRedirect, HttpResponse
+from __future__ import unicode_literals
+from django.shortcuts import render
 
-from .models import *
+from django.views.generic import View
+from utils.shortcuts import info_page
+from account.decorators import login_required
+from .forms import UserLoginForm, UserRegisterForm, EditAccountForm
+from .models import WuuyunUser
 
-# Create your views here.
 
-class UserForm(forms.Form):
-    Username = forms.CharField(label='真实姓名', max_length=30)
-    Nickname = forms.CharField(label='昵称', max_length=30)
-    Telephone = forms.CharField(label='电话', max_length=11)
-    Email = forms.EmailField(label='电子邮件')
-    Password = forms.CharField(label='密码', widget=forms.PasswordInput())
+class UserRegisterView(View):
+    def post(self, request):
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                WuuyunUser.objects.get(username=data["username"])
+                return info_page(request, "用户名已经存在")
+            except WuuyunUser.DoesNotExist:
+                pass
+            try:
+                WuuyunUser.objects.get(email=data["email"])
+                return info_page(request, "email已经存在")
+            except WuuyunUser.DoesNotExist:
+                pass
+            WuuyunUser.objects.create(username=data["username"], email=data["email"], password=data["password"])
+            return info_page(request, "注册成功")
+        else:
+            return info_page(request, "数据格式不合法")
 
-def index(request):
-    context = {}
-    return render(request, 'account/index.html', context)
+    def get(self, request):
+        return render(request, "account/register.html")
 
-def register(request):
-    if request.method == "POST":
-        uf = UserForm(request.POST)
-        if uf.is_valid():
-            Username = uf.cleaned_data['Username']
-            Nickname = uf.cleaned_data['Nickname']
-            Telephone = uf.cleaned_data['Telephone']
-            Email = uf.cleaned_data['Email']
-            Password = uf.cleaned_data['Password']
 
-            user = Customer()
-            user.Username = Username
-            user.Nickname = Nickname
-            user.Telephone = Telephone
-            user.Email = Email
-            user.Password = Password
+class UserLoginView(View):
+    def post(self, request):
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                user = WuuyunUser.objects.get(username=data["username"], password=data["password"])
+                request.session["user_id"] = user.id
+                return info_page(request, "登录成功")
+            except WuuyunUser.DoesNotExist:
+                return info_page(request, "用户名或密码错误")
+        else:
+            return info_page(request, "数据格式不合法")
+
+    def get(self, request):
+        return render(request, "account/login.html")
+
+
+class UserLogoutView(View):
+    def get(self, request):
+        if "user_id" in request.session:
+            del request.session["user_id"]
+        return info_page(request, "操作成功")
+
+
+class EditUserView(View):
+    @login_required
+    def get(self, request):
+        return render(request, "account/settings.html")
+
+    @login_required
+    def post(self, request):
+        form = EditAccountForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = request.wuuyun_user
+            user.email = data["email"]
+            user.phone = data["phone"]
+            user.mood = data["mood"]
+            if data["role"] is None:
+                data["role"] = 0
+            user.role = data["role"]
             user.save()
+            return info_page(request, "编辑成功")
+        else:
+            return info_page(request, "数据格式不合法")
 
-            return HttpResponse("register successful!")
-    else:
-        context = {'userform' : UserForm()}
-        return render(request, 'account/register.html', context)
-
-
-def login(request):
-    context = {}
-    return render(request, 'account/login.html', context)
