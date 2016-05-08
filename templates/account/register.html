@@ -1,42 +1,42 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block body %}
-    <div class="container main">
-        <div class="col-lg-6 col-lg-offset-3">
-            <h2 class="text-center">用户注册</h2>
+    <div class='container main'>
+        <div class='col-lg-6 col-lg-offset-3'>
+            <h2 class='text-center'>用户注册</h2>
 
-            <form id="register-form" action="/register/" method="post" enctype="application/x-www-form-urlencoded">
+            <form id='register-form' action='/register/' method='post' enctype='application/x-www-form-urlencoded'>
                 {% csrf_token %}
-                <div class="form-group">
-                    <label>昵称</label>
-                    <input type="text" class="form-control input-lg" id='Nickname' name="Nickname" maxlength="30" required>
+                <div class='form-group'>
+                    <label for='Nickname'>昵称</label>
+                    <input type='text' class='form-control input-lg' id='Nickname' name='Nickname' maxlength='30' required>
                 </div>
 
-                <div class="form-group">
-                    <label for="username">用户名</label>
-                    <input type="text" class="form-control input-lg" id='Username' name="Username" maxlength="30" required>
+                <div class='form-group'>
+                    <label for='Username'>用户名</label>
+                    <input type='text' class='form-control input-lg' id='Username' name='Username' maxlength='30' required>
                 </div>
 
-                <div class="form-group">
-                    <label for="username">手机</label>
-                    <input type="text" class="form-control input-lg" id='Telephone' name="Telephone" maxlength="11" required>
+                <div class='form-group'>
+                    <label for='Telephone'>手机</label>
+                    <input type='text' class='form-control input-lg' id='Telephone' name='Telephone' maxlength='11' required>
                 </div>
 
-                <div class="form-group">
-                    <label for="username">邮箱</label>
-                    <input type="email" class="form-control input-lg" id='Email' name="Email" maxlength="30" required>
+                <div class='form-group'>
+                    <label for='Email'>邮箱</label>
+                    <input type='email' class='form-control input-lg' id='Email' name='Email' maxlength='30' required>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">密码</label>
-                    <input type="password" class="form-control input-lg" id='Password' name="Password" maxlength="20"
-                           placeholder="密码" required>
+                <div class='form-group'>
+                    <label for='Password'>密码</label>
+                    <input type='password' class='form-control input-lg' id='Password' name='Password' maxlength='20'
+                           placeholder='密码' required>
                 </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">提交</button>
+                <div class='form-group'>
+                    <button type='submit' class='btn btn-primary'>提交</button>
                 </div>
-                <a href="/login/">已有帐号?点击登录</a>
+                <a href='/login/'>已有帐号?点击登录</a>
 
             </form>
         </div>

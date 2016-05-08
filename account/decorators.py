@@ -40,20 +40,7 @@ class login_required(BasePermissionDecorator):
         user_id = self.request.session.get("user_id", None)
         if user_id:
             try:
-                return WuuyunUser.objects.get(id=user_id)
-            except WuuyunUser.DoesNotExist:
-                pass
-        return None
-
-
-class admin_required(BasePermissionDecorator):
-    def check_permission(self):
-        user_id = self.request.session.get("user_id", None)
-        if user_id is not None:
-            try:
-                user = WuuyunUser.objects.get(id=user_id)
-                if user.role == 1:
-                    return user
-            except WuuyunUser.DoesNotExist:
+                return Customer.objects.get(Id=user_id)
+            except Customer.DoseNotExist:
                 pass
         return None

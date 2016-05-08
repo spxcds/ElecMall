@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django import forms
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(max_length=20)
-    password = forms.CharField(max_length=20)
+    Email = forms.CharField(max_length=30)
+    Password = forms.CharField(max_length=20)
 
 
 class UserRegisterForm(forms.Form):

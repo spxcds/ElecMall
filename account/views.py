@@ -35,15 +35,14 @@ class UserRegisterView(View):
         return render(request, "account/register.html")
 
 
-'''
 class UserLoginView(View):
     def post(self, request):
         form = UserLoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             try:
-                user = WuuyunUser.objects.get(username=data["username"], password=data["password"])
-                request.session["user_id"] = user.id
+                user = Customer.objects.get(Email=data["Email"], Password=data["Password"])
+                request.session["user_id"] = user.Id
                 return info_page(request, "登录成功")
             except WuuyunUser.DoesNotExist:
                 return info_page(request, "用户名或密码错误")
@@ -54,6 +53,7 @@ class UserLoginView(View):
         return render(request, "account/login.html")
 
 
+'''
 class UserLogoutView(View):
     def get(self, request):
         if "user_id" in request.session:
