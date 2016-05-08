@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 
 from django.views.generic import View
-from utils.shortcuts import info_page
 from account.decorators import login_required
+
+from utils.shortcuts import info_page
 from .forms import UserLoginForm, UserRegisterForm, EditAccountForm
-from .models import WuuyunUser
+from .models import Customer
 
 
 class UserRegisterView(View):
@@ -15,16 +16,17 @@ class UserRegisterView(View):
         if form.is_valid():
             data = form.cleaned_data
             try:
-                WuuyunUser.objects.get(username=data["username"])
-                return info_page(request, "用户名已经存在")
-            except WuuyunUser.DoesNotExist:
+                Customer.objects.get(Username=data['Username'])
+                return info_page(request, '用户已经存在')
+            except Customer.DoesNotExist:
                 pass
             try:
-                WuuyunUser.objects.get(email=data["email"])
-                return info_page(request, "email已经存在")
-            except WuuyunUser.DoesNotExist:
+                Customer.objects.get(Email=data['Email'])
+                return info_page(request, '该邮件已经注册')
+            except Customer.DoesNotExist:
                 pass
-            WuuyunUser.objects.create(username=data["username"], email=data["email"], password=data["password"])
+            Customer.objects.create(Id=None, Username=data['Username'], Email=data['Email'], 
+                                    Telephone=data['Telephone'], Nickname=data['Nickname'], Password=data['Password'])
             return info_page(request, "注册成功")
         else:
             return info_page(request, "数据格式不合法")
@@ -33,6 +35,7 @@ class UserRegisterView(View):
         return render(request, "account/register.html")
 
 
+'''
 class UserLoginView(View):
     def post(self, request):
         form = UserLoginForm(request.POST)
@@ -80,3 +83,4 @@ class EditUserView(View):
         else:
             return info_page(request, "数据格式不合法")
 
+'''

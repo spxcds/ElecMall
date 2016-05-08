@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from utils.shortcuts import info_page
-from .models import WuuyunUser
+from .models import Customer
 
 
 class BasePermissionDecorator(object):
@@ -26,13 +26,10 @@ class BasePermissionDecorator(object):
 
         user = self.check_permission()
         if user is not None:
-            self.request.wuuyun_user = user
+            self.request.user = user
             return self.func(*args, **kwargs)
         else:
-            response = HttpResponse("Your role is not admin")
-            response.status_code = 302
-            response["Location"] = "/login/"
-            return response
+            return info_page(request, '请先登录')
 
     def check_permission(self):
         raise NotImplementedError()
