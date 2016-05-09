@@ -43,6 +43,7 @@ class UserLoginView(View):
             try:
                 user = Customer.objects.get(Email=data["Email"], Password=data["Password"])
                 request.session['user_id'] = user.id
+                request.user = user
                 return info_page(request, "登录成功")
             except Customer.DoesNotExist:
                 return info_page(request, "用户名或密码错误")
@@ -71,7 +72,7 @@ class UserEditView(View):
         if form.is_valid():
 
             data = form.cleaned_data
-            user = request.customer_user
+            user = request.user
             user.Email = data['Email']
             user.Nickname = data['Nickname']
             user.Telephone = data['Telephone']

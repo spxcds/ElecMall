@@ -12,7 +12,7 @@
                 <div class="form-group col-md-6">
                     <label>真实姓名</label>
                     <input name="Username" type="text" class="form-control" maxlength="30"
-                           value="{{ request.customer_user.Username }}"  readonly required>
+                           value="{{ request.user.Username }}"  readonly required>
                 </div>
             </div>
 
@@ -21,7 +21,7 @@
                     <label>昵称</label>
                     <input name="Nickname" type="text" maxlength="30"
                            class="form-control"
-                           value="{% if request.customer_user.Nickname %}{{ request.customer_user.Nickname }}{% endif %}" required>
+                           value="{% if request.user.Nickname %}{{ request.user.Nickname }}{% endif %}" required>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                 <div class="form-group col-md-6">
                     <label>电子邮箱</label>
                     <input name="Email" type="email" class="form-control" maxlength="30"
-                           value="{{ request.customer_user.Email }}"  required>
+                           value="{{ request.user.Email }}"  required>
                 </div>
             </div>
 
@@ -38,7 +38,7 @@
                     <label>手机</label>
                     <input name="Telephone" type="text" maxlength="11" id="phone"
                            class="form-control"
-                           value="{% if request.customer_user.Telephone %}{{ request.customer_user.Telephone }}{% endif %}" required>
+                           value="{% if request.user.Telephone %}{{ request.user.Telephone }}{% endif %}" required>
                 </div>
             </div>
 

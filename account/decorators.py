@@ -25,7 +25,7 @@ class BasePermissionDecorator(object):
 
         user = self.check_permission()
         if user is not None:
-            self.request.customer_user = user
+            self.request.user = user
             return self.func(*args, **kwargs)
         else:
             return info_page(request, '请先登录')
