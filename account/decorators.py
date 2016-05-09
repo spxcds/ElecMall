@@ -28,7 +28,6 @@ class BasePermissionDecorator(object):
             self.request.user = user
             return self.func(*args, **kwargs)
         else:
-            print '+++++++++++++++++++++++++++++'
             return info_page(request, '请先登录')
 
     def check_permission(self):
@@ -40,7 +39,7 @@ class login_required(BasePermissionDecorator):
         user_id = self.request.session.get("user_id", None)
         if user_id:
             try:
-                return Customer.objects.get(Id=user_id)
+                return Customer.objects.get(id=user_id)
             except Customer.DoseNotExist:
                 pass
         return None

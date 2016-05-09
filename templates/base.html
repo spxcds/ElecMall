@@ -38,8 +38,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
                             {% if request.user %}
-                                {{ request.user }}
-                            {% else%}
+                                {{ request.user.Email}}
+                                --
+                            {% else %}
                                 设置
                             {% endif %}
                             <span class="caret"></span></a>
@@ -74,7 +75,7 @@
 {% block js_block %}{% endblock %}
 <!-- footer begin -->
 <div class="footer">
-    <p class="text-muted text-center">Copyright © 2016 <a href="https://github.com">spxcds</a></p>
+    <p class="text-muted text-center">Copyright © 2016 <a href="https://github.com/spxcds">spxcds</a> & Simplan & Xiaofa Xu</p>
 </div>
 <!-- footer end -->
 </body>

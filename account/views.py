@@ -25,7 +25,7 @@ class UserRegisterView(View):
                 return info_page(request, '该邮件已经注册')
             except Customer.DoesNotExist:
                 pass
-            Customer.objects.create(Id=None, Username=data['Username'], Email=data['Email'], 
+            Customer.objects.create(Username=data['Username'], Email=data['Email'], 
                                     Telephone=data['Telephone'], Nickname=data['Nickname'], Password=data['Password'])
             return info_page(request, "注册成功")
         else:
@@ -42,7 +42,7 @@ class UserLoginView(View):
             data = form.cleaned_data
             try:
                 user = Customer.objects.get(Email=data["Email"], Password=data["Password"])
-                request.session["user_id"] = user.Id
+                request.session['user_id'] = user.id
                 return info_page(request, "登录成功")
             except Customer.DoesNotExist:
                 return info_page(request, "用户名或密码错误")
@@ -53,7 +53,6 @@ class UserLoginView(View):
         return render(request, "account/login.html")
 
 
-'''
 class UserLogoutView(View):
     def get(self, request):
         if "user_id" in request.session:
@@ -61,6 +60,7 @@ class UserLogoutView(View):
         return info_page(request, "操作成功")
 
 
+'''
 class EditUserView(View):
     @login_required
     def get(self, request):
