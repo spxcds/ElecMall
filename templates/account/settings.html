@@ -10,37 +10,38 @@
         {% csrf_token %}
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label>用户名</label>
-                    <input name="username" type="text" class="form-control" maxlength="30"
-                           value="{{ request.wuuyun_user.username }}"  readonly required>
+                    <label>真实姓名</label>
+                    <input name="Username" type="text" class="form-control" maxlength="30"
+                           value="{{ request.customer_user.Username }}"  readonly required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-10">
+                    <label>昵称</label>
+                    <input name="Nickname" type="text" maxlength="30"
+                           class="form-control"
+                           value="{% if request.customer_user.Nickname %}{{ request.customer_user.Nickname }}{% endif %}" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-6">
                     <label>电子邮箱</label>
-                    <input name="email" type="email" class="form-control" maxlength="30"
-                           value="{{ request.wuuyun_user.email }}"  required>
+                    <input name="Email" type="email" class="form-control" maxlength="30"
+                           value="{{ request.customer_user.Email }}"  required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-6">
                     <label>手机</label>
-                    <input name="phone" type="text" maxlength="11" id="phone"
+                    <input name="Telephone" type="text" maxlength="11" id="phone"
                            class="form-control"
-                           value="{% if request.wuuyun_user.phone %}{{ request.wuuyun_user.phone }}{% endif %}" required>
+                           value="{% if request.customer_user.Telephone %}{{ request.customer_user.Telephone }}{% endif %}" required>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-10">
-                    <label>个性签名</label>
-                    <input name="mood" type="text" maxlength="100"
-                           class="form-control"
-                           value="{% if request.wuuyun_user.mood %}{{ request.wuuyun_user.mood }}{% endif %}" required>
-                </div>
-            </div>
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">提交</button>

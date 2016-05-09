@@ -6,7 +6,7 @@ from django.views.generic import View
 from account.decorators import login_required
 
 from utils.shortcuts import info_page
-from .forms import UserLoginForm, UserRegisterForm, EditAccountForm
+from .forms import UserLoginForm, UserRegisterForm, UserEditForm
 from .models import Customer
 
 
@@ -60,27 +60,25 @@ class UserLogoutView(View):
         return info_page(request, "操作成功")
 
 
-'''
-class EditUserView(View):
+class UserEditView(View):
     @login_required
     def get(self, request):
         return render(request, "account/settings.html")
 
     @login_required
     def post(self, request):
-        form = EditAccountForm(request.POST)
+        form = UserEditForm(request.POST)
         if form.is_valid():
+
             data = form.cleaned_data
-            user = request.wuuyun_user
-            user.email = data["email"]
-            user.phone = data["phone"]
-            user.mood = data["mood"]
-            if data["role"] is None:
-                data["role"] = 0
-            user.role = data["role"]
+            user = request.customer_user
+            user.Email = data['Email']
+            user.Nickname = data['Nickname']
+            user.Telephone = data['Telephone']
+            user.Username = data['Username']
+            user.Nickname = data['Nickname']
             user.save()
+
             return info_page(request, "编辑成功")
         else:
             return info_page(request, "数据格式不合法")
-
-'''
