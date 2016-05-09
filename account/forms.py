@@ -13,6 +13,7 @@ class UserRegisterForm(forms.Form):
     Telephone = forms.CharField(max_length=11)
     Email = forms.EmailField(max_length=30)
     Password = forms.CharField(max_length=20)
+    captcha = forms.CharField(max_length=4)
 
 
 class UserEditForm(forms.Form):

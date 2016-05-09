@@ -4,8 +4,9 @@ from django.shortcuts import render
 
 from django.views.generic import View
 from account.decorators import login_required
-
 from utils.shortcuts import info_page
+from utils.captcha import Captcha
+
 from .forms import UserLoginForm, UserRegisterForm, UserEditForm
 from .models import Customer
 
@@ -15,6 +16,9 @@ class UserRegisterView(View):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            captcha = Captcha(request)
+            if not captcha.check(data['captcha']):
+                return info_page(request, '验证码错误')
             try:
                 Customer.objects.get(Username=data['Username'])
                 return info_page(request, '用户已经存在')

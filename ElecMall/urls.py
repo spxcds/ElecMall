@@ -18,6 +18,7 @@ from django.contrib import admin
 
 from . import views
 from account.views import UserRegisterView, UserLoginView, UserLogoutView, UserEditView
+from utils.captcha.views import show_captcha
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -26,4 +27,5 @@ urlpatterns = [
     url(r'^account/login/$', UserLoginView.as_view()),
     url(r'^account/logout/$', UserLogoutView.as_view()),
     url(r'^account/settings/$', UserEditView.as_view()),
+    url(r'^captcha/$', show_captcha),
 ]
