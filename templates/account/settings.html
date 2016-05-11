@@ -1,50 +1,50 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}
     个人资料
 {% endblock %}
 
 {% block body %}
-<div class="container main">
-    <div class="col-lg-6">
-        <form method="POST" action="/account/settings/">
+<div class='container main'>
+    <div class='col-lg-6 col-lg-offset-3'>
+        <form method='POST' action='/account/settings/'>
         {% csrf_token %}
-            <div class="row">
-                <div class="form-group col-md-6">
+            <div class='row'>
+                <div class='form-group'>
                     <label>真实姓名</label>
-                    <input name="Username" type="text" class="form-control" maxlength="30"
-                           value="{{ request.user.Username }}"  readonly required>
+                    <input name='Username' type='text' class='form-control' maxlength='30'
+                           value='{{ request.user.Username }}'  readonly required>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-10">
+            <div class='row'>
+                <div class='form-group'>
                     <label>昵称</label>
-                    <input name="Nickname" type="text" maxlength="30"
-                           class="form-control"
-                           value="{% if request.user.Nickname %}{{ request.user.Nickname }}{% endif %}" required>
+                    <input name='Nickname' type='text' maxlength='30'
+                           class='form-control'
+                           value='{% if request.user.Nickname %}{{ request.user.Nickname }}{% endif %}' required>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-6">
+            <div class='row'>
+                <div class='form-group'>
                     <label>电子邮箱</label>
-                    <input name="Email" type="email" class="form-control" maxlength="30"
-                           value="{{ request.user.Email }}"  required>
+                    <input name='Email' type='email' class='form-control' maxlength='30'
+                           value='{{ request.user.Email }}'  required>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-6">
+            <div class='row'>
+                <div class='form-group'>
                     <label>手机</label>
-                    <input name="Telephone" type="text" maxlength="11" id="phone"
-                           class="form-control"
-                           value="{% if request.user.Telephone %}{{ request.user.Telephone }}{% endif %}" required>
+                    <input name='Telephone' type='text' maxlength='11' id='phone'
+                           class='form-control'
+                           value='{% if request.user.Telephone %}{{ request.user.Telephone }}{% endif %}' required>
                 </div>
             </div>
 
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">提交</button>
+            <div class='form-group'>
+                <button type='submit' class='btn btn-primary'>提交</button>
             </div>
         </form>
     </div>
