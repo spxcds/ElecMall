@@ -2,4 +2,5 @@
 *.sqlite3
 *.swp
 customer/migrations/*
+goods/migrations/*
 ctf-wuuyun/

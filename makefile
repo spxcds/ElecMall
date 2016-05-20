@@ -5,3 +5,5 @@ check:
 migrate:
 	sudo python manage.py makemigrations
 	sudo python manage.py migrate
+shell:
+	sudo python manage.py shell
