@@ -6,13 +6,13 @@ from django.db import models
 
 class Goods(models.Model):
     id = models.AutoField(primary_key=True, db_index=True)
-    Goodscatagory = models.CharaField(max_length=20);
-    Goodsamount = models.PositiveIntegerField()
-    Goodsname = models.CharField(max_length=30)
-    Goodsprice = models.CharField(max_length=30)
-    Goodpicture = models.ImageField()
+    GoodsCatagory = models.CharField(max_length=20);
+    GoodsAmount = models.PositiveIntegerField()
+    GoodsName = models.CharField(max_length=30)
+    GoodsPrice = models.CharField(max_length=30)
+    GoodsPicture = models.ImageField()
 
     class Meta:
         db_table = 'goods' 
     def __str__(self): 
-        return self.Goodsname
+        return self.GoodsName

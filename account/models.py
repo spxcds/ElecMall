@@ -6,7 +6,7 @@ from django.db import models
 
 class Customer(models.Model):
     id = models.AutoField(primary_key=True, db_index=True)
-    Balance = models.IntegerField()
+    Balance = models.IntegerField(default=0)
     Username = models.CharField(max_length=30)
     Nickname = models.CharField(max_length=30)
     Telephone = models.CharField(max_length=11)

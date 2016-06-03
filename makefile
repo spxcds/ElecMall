@@ -7,3 +7,5 @@ migrate:
 	sudo python manage.py migrate
 shell:
 	sudo python manage.py shell
+createadmin:
+	sudo python manage.py createsuperuser

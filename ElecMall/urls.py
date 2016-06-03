@@ -19,6 +19,7 @@ from django.contrib import admin
 from . import views
 from django.views.generic import TemplateView
 from account.views import UserRegisterView, UserLoginView, UserLogoutView, UserEditView
+from goods.views import GoodsShowView
 from utils.captcha.views import show_captcha
 
 urlpatterns = [
@@ -28,13 +29,6 @@ urlpatterns = [
     url(r'^account/login/$', UserLoginView.as_view()),
     url(r'^account/logout/$', UserLogoutView.as_view()),
     url(r'^account/settings/$', UserEditView.as_view()),
-    url(r'^goods/show/$', TemplateView.as_view(template_name='goods/demo.html')),
     url(r'^captcha/$', show_captcha),
-
-
-    url(r'^goods/phone/$', TemplateView.as_view(template_name='ElecMall/index.html')),
-    url(r'^goods/camera/$', TemplateView.as_view(template_name='ElecMall/index.html')),
-    url(r'^goods/notebook/$', TemplateView.as_view(template_name='ElecMall/index.html')),
-    url(r'^goods/tv/$', TemplateView.as_view(template_name='ElecMall/index.html')),
-    url(r'^goods/all_in_one/$', TemplateView.as_view(template_name='ElecMall/index.html')),
+    url(r'^goods/(?P<catagory>[a-zA-Z]+)/$', GoodsShowView.as_view()),
 ]

@@ -1,10 +1,18 @@
-    <frameset rows='15%,*' frameborder='0' scrolling='Auto'>
+{% extends 'base.html' %}
 
-        <frame src='/static/images/logo.jpg' />
+{% block body %}
+<div class='container main'>
 
-        <frameset cols='16%,*' frameborder='0' scrolling='Auto'>
-            <frame src='/goods/show/' />
-            <frame src='/static/images/bp.jpg' name='view_frame' />
-        </frameset>
+    <div class='col-lg-2'>
+        <ul class='list-group'>
+            {% for items in  goods %}
+                <li class='list-group-item'> {{items}} </li>
+            {% endfor %}
+        </ul> 
+    </div>
 
-    </frameset>
+
+
+</div>
+
+{% endblock %}
