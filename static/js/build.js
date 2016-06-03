@@ -1,13 +1,12 @@
-var require = {
-    urlArgs: "v=2.1",
-    // RequireJS 通过一个相对的路径 baseUrl来加载所有代码。baseUrl通常被设置成data-main属性指定脚本的同级目录。
-    baseUrl: "/static/js/",
+({
+	// RequireJS 通过一个相对的路径 baseUrl来加载所有代码。baseUrl通常被设置成data-main属性指定脚本的同级目录。
+	baseUrl: "./js",
+	// 第三方脚本模块的别名,jquery比libs/jquery-1.11.1.min.js简洁明了；
     paths: {
-        jquery: "lib/jquery/jquery",
-        jcountdown: "lib/jcountdown/jcountdown",
-        avalon: "lib/avalon/avalon",
-        //avalon15: "lib/avalon/avalon15",
+        jquery: "empty:",
+        avalon: "empty:",
         editor: "utils/editor",
+        jcountdown: "lib/jcountdown/jcountdown",
         uploader: "utils/uploader",
         formValidation: "utils/formValidation",
         codeMirror: "utils/codeMirror",
@@ -30,7 +29,6 @@ var require = {
         testCaseUploader: "components/testCaseUploader",
         spj: "components/spj",
 
-
         // ------ 下面写的都不要直接用，而是使用上面的封装版本 ------
         //富文本编辑器simditor -> editor
         simditor: "lib/simditor/simditor",
@@ -52,7 +50,7 @@ var require = {
         //百度webuploader -> uploader
         webUploader: "lib/webuploader/webuploader",
 
-        // "_datetimePicker": "lib/datetime_picker/bootstrap-datetimepicker",
+        //"_datetimePicker": "lib/datetime_picker/bootstrap-datetimepicker",
 
         //以下都是页面 script 标签引用的js
         //以下都是页面 script 标签引用的js
@@ -89,5 +87,100 @@ var require = {
             avalon: {
                 exports: "avalon"
             }
-    }
-};
+    },
+    findNestedDependencies: true,
+    appDir: "../",
+    dir: "../../release/",
+    modules: [
+        // 提交脚本提取的模块的时候不要删掉这个
+        {
+            name: "bootstrap",
+        },
+        /////////////////////////////////
+        {
+            name: "announcement_0_pack"
+        },
+        {
+            name: "userList_1_pack"
+        },
+        {
+            name: "twoFactorAuth_2_pack"
+        },
+        {
+            name: "problem_3_pack"
+        },
+        {
+            name: "submissionList_4_pack"
+        },
+        {
+            name: "contestCountdown_5_pack"
+        },
+        {
+            name: "avatar_6_pack"
+        },
+        {
+            name: "addProblem_7_pack"
+        },
+        {
+            name: "problem_8_pack"
+        },
+        {
+            name: "contestList_9_pack"
+        },
+        {
+            name: "admin_10_pack"
+        },
+        {
+            name: "login_11_pack"
+        },
+        {
+            name: "applyResetPassword_12_pack"
+        },
+        {
+            name: "addContest_13_pack"
+        },
+        {
+            name: "contestPassword_14_pack"
+        },
+        {
+            name: "changePassword_15_pack"
+        },
+        {
+            name: "judges_16_pack"
+        },
+        {
+            name: "editProblem_17_pack"
+        },
+        {
+            name: "joinGroupRequestList_18_pack"
+        },
+        {
+            name: "group_19_pack"
+        },
+        {
+            name: "contestProblemList_20_pack"
+        },
+        {
+            name: "editProblem_21_pack"
+        },
+        {
+            name: "register_22_pack"
+        },
+        {
+            name: "groupDetail_23_pack"
+        },
+        {
+            name: "editContest_24_pack"
+        },
+        {
+            name: "resetPassword_25_pack"
+        },
+        {
+            name: "group_26_pack"
+        },
+        {
+            name: "settings_27_pack"
+        }
+    ],
+    optimizeCss: "standard",
+})

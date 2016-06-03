@@ -6,6 +6,7 @@ from django.db import models
 
 class Goods(models.Model):
     id = models.AutoField(primary_key=True, db_index=True)
+    Goodscatagory = models.CharaField(max_length=20);
     Goodsamount = models.PositiveIntegerField()
     Goodsname = models.CharField(max_length=30)
     Goodsprice = models.CharField(max_length=30)

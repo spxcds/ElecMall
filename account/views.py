@@ -29,7 +29,7 @@ class UserRegisterView(View):
                 return info_page(request, '该邮件已经注册')
             except Customer.DoesNotExist:
                 pass
-            user = Customer.objects.create(Username=data['Username'], Email=data['Email'], 
+            user = Customer.objects.create(Username=data['Username'], Email=data['Email'], Balance=0,
                                            Telephone=data['Telephone'], Nickname=data['Nickname'], Password=data['Password'])
             request.user = user
             request.session['user_id'] = user.id
