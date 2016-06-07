@@ -6,7 +6,10 @@
     <div class='col-lg-2'>
         <ul class='list-group'>
             {% for items in  goods %}
-                <li class='list-group-item'> {{items}} </li>
+                '/media/{{ items.GoodsPicture }}'
+                <img src='/static/media/{{items.GoodsPicture }}' >
+                <!--<li class='list-group-item'> <img src='/media/{{items.GoodsPicture}}' > </li>-->
+                <li>----------------------</li>
             {% endfor %}
         </ul> 
     </div>

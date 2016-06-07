@@ -10,7 +10,7 @@ class Goods(models.Model):
     GoodsAmount = models.PositiveIntegerField()
     GoodsName = models.CharField(max_length=30)
     GoodsPrice = models.CharField(max_length=30)
-    GoodsPicture = models.ImageField()
+    GoodsPicture = models.ImageField(upload_to='goods')
 
     class Meta:
         db_table = 'goods' 

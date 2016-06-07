@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 
 from . import views
@@ -31,4 +33,4 @@ urlpatterns = [
     url(r'^account/settings/$', UserEditView.as_view()),
     url(r'^captcha/$', show_captcha),
     url(r'^goods/(?P<catagory>[a-zA-Z]+)/$', GoodsShowView.as_view()),
-]
+] 

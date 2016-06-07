@@ -10,6 +10,6 @@ from .models import Goods
 class GoodsShowView(View):
 
     def get(self, request, catagory):
-        goods = Goods.objects.all()
+        goods = Goods.objects.filter(GoodsCatagory=catagory)
         context = {'goods': goods}
         return render(request, 'goods/index.html', context)
