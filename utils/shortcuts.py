@@ -17,6 +17,8 @@ def info_page(request, text):
         request.user = Customer.objects.get(id=user_id)
     except Customer.DoesNotExist:
         pass
+    except AttributeError:
+        return render_to_response('utils/info.html', {'text': text})
     return render(request, 'utils/info.html', {'text': text})
 
 
