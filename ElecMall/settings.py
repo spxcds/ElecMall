@@ -84,7 +84,7 @@ DATABASES = {
         #'NAME': os.path.join(BASE_DIR, 'ElecMalldb'),
         'NAME': 'ElecMalldb',
         'USER': 'root',
-        'PASSWORD': 'ss175625',
+        'PASSWORD': 'root',
         'PORT': 3306,
     }
 }
