@@ -17,7 +17,7 @@ class Goods(models.Model):
     GoodsCatagory = models.ForeignKey(GOODSCATAGORY, on_delete=models.CASCADE)
     GoodsAmount = models.PositiveIntegerField()
     GoodsName = models.CharField(max_length=30)
-    GoodsPrice = models.CharField(max_length=30)
+    GoodsPrice = models.IntegerField()
     GoodsPicture = models.ImageField(upload_to='goods')
 
     class Meta:
