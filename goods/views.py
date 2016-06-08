@@ -23,3 +23,20 @@ class GoodsShowView(View):
             return info_page(request, "没有此类商品")
         context = {'goods': goods}
         return render(request, 'goods/index.html', context)
+
+
+class GoodsShowItemView(View):
+
+    def get(self, request, goods_id):
+        try:
+            user_id = request.session.get("user_id", None)
+            request.user = Customer.objects.get(id=user_id)
+        except Customer.DoesNotExist:
+            pass
+
+        try:
+            item = Goods.objects.get(id=goods_id)
+        except:
+            return info_page(request, "没有此商品")
+        context = {'item': item}
+        return render(request, 'goods/item.html', context)

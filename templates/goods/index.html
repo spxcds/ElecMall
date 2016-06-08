@@ -4,13 +4,13 @@
 <div class='container main'>
 
     <table class='table table-striped table-hover'>
-        {% for items in  goods %}
+        {% for item in  goods %}
             <div class='classTable'>
                 <tr>
-                    <th><img src='/static/media/{{items.GoodsPicture }}' height='240', width='200'></th>
-                    <th>商品名字: {{items.GoodsName }}</th>
-                    <th>商品价格: {{items.GoodsPrice }}</th>
-                    <th>商品数量: {{items.GoodsAmount }}</th>
+                    <th><a href='/goods/item/{{item.id}}'><img src='/static/media/{{item.GoodsPicture }}' height='240', width='200'></a></th>
+                    <th>商品名字: {{item.GoodsName }}</th>
+                    <th>商品价格: {{item.GoodsPrice }}</th>
+                    <th>商品数量: {{item.GoodsAmount }}</th>
                 </tr>
             </div>
         {% endfor %}

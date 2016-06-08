@@ -21,16 +21,20 @@ from django.contrib import admin
 from . import views
 from django.views.generic import TemplateView
 from account.views import UserRegisterView, UserLoginView, UserLogoutView, UserEditView
-from goods.views import GoodsShowView
+from goods.views import GoodsShowView, GoodsShowItemView
 from utils.captcha.views import show_captcha
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
+
     url(r'^account/register/$', UserRegisterView.as_view()),
     url(r'^account/login/$', UserLoginView.as_view()),
     url(r'^account/logout/$', UserLogoutView.as_view()),
     url(r'^account/settings/$', UserEditView.as_view()),
+
     url(r'^captcha/$', show_captcha),
+
     url(r'^goods/(?P<catagory>[a-zA-Z]+)/$', GoodsShowView.as_view()),
+    url(r'^goods/item/(?P<goods_id>[0-9]+)/$', GoodsShowItemView.as_view()),
 ] 

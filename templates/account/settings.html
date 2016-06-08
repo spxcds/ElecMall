@@ -18,6 +18,14 @@
 
             <div class='row'>
                 <div class='form-group'>
+                    <label>账户余额</label>
+                    <input name='Balance' type='text' class='form-control' maxlength='30'
+                           value='{{ request.user.Balance}}'  readonly required>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='form-group'>
                     <label>昵称</label>
                     <input name='Nickname' type='text' maxlength='30'
                            class='form-control'

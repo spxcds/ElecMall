@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class='container main'>
+    <div class='col-lg-5'>
+        <img src='/static/media/{{item.GoodsPicture }}' height='480' width='400'>
+    </div>
+
+    <div class='col-lg-7'>
+        <form>
+            <div class='form-group col-md-8'>
+                <label>商品名字</label>
+                <input name='GoodsName' type='text' class='form-control' value='{{item.GoodsName}}' readonly>
+            </div>
+
+            <div class='form-group col-md-8'>
+                <label>商品价格</label>
+                <input name='GoodsPrice' type='text' class='form-control' value='{{item.GoodsPrice}}' readonly>
+            </div>
+
+            <div class='form-group col-md-8'>
+                <label>商品数量</label>
+                <input name='GoodsAmount' type='text' class='form-control' value='{{item.GoodsAmount}}' readonly>
+            </div>
+
+            <div class='form-group col-md-8'>
+                <label>购买数量</label>
+                <input name='BuyNumber' type='number' class='form-control' value='0'>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">点击购买</button> 
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}
