@@ -40,3 +40,7 @@ class GoodsShowItemView(View):
             return info_page(request, "没有此商品")
         context = {'item': item}
         return render(request, 'goods/item.html', context)
+
+    @login_required
+    def post(self, request, goods_id):
+        return info_page(request, '其实, 你已经登录成功了')

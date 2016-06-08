@@ -7,7 +7,8 @@
     </div>
 
     <div class='col-lg-7'>
-        <form>
+        <form id='buyItem-form' action='/goods/item/{{item.id}}/' method='post' enctype='application/x-www-form-urlencoded'>
+            {% csrf_token %}
             <div class='form-group col-md-8'>
                 <label>商品名字</label>
                 <input name='GoodsName' type='text' class='form-control' value='{{item.GoodsName}}' readonly>
