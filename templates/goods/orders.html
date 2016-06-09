@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class='container main'>
+
+    <table class='table table-striped table-hover'>
+        <div class='classTable'>
+            <tr>
+                <th>所购商品</th>
+                <th>所购数量</th>
+                <th>商品单价</th>
+                <th>订单总额</th>
+                <th>订单时间</th>
+            </tr>
+        </div>
+        {% for order in orders %}
+            <div class='classTable'>
+                <tr>
+                    <th>{{order.Goods_id}}</th>
+                    <th>{{order.Goods_num}}</th>
+                    <th>{{order.Goods_price}}</th>
+                    <th>{{order.Order_total}}</th>
+                    <th>{{order.Order_time}}</th>
+                </tr>
+            </div>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

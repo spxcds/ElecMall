@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from utils.shortcuts import info_page
 
-from .models import Goods
+from .models import Goods, Order
 from .forms import GoodsItemForm
 from account.decorators import login_required
 from account.models import Customer
@@ -71,34 +71,19 @@ class GoodsShowItemView(View):
         GoodsItem.GoodsAmount -= data['BuyNumber']
         GoodsItem.save();
 
+        order = Order(Customer_id=customer, Goods_id=GoodsItem, Goods_num=data['BuyNumber'],
+                Goods_price=GoodsItem.GoodsPrice, Order_total=data['BuyNumber']*data['GoodsPrice'])
+        order.save()
+
+
         return info_page(request, '购买成功')
 
 
-class UserRegisterView(View):
-    def post(self, request):
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            captcha = Captcha(request)
-            if not captcha.check(data['captcha']):
-                return info_page(request, '验证码错误')
-            try:
-                Customer.objects.get(Username=data['Username'])
-                return info_page(request, '用户已经存在')
-            except Customer.DoesNotExist:
-                pass
-            try:
-                Customer.objects.get(Email=data['Email'])
-                return info_page(request, '该邮件已经注册')
-            except Customer.DoesNotExist:
-                pass
-            user = Customer.objects.create(Username=data['Username'], Email=data['Email'], Balance=0,
-                                           Telephone=data['Telephone'], Nickname=data['Nickname'], Password=data['Password'])
-            request.user = user
-            request.session['user_id'] = user.id
-            return info_page(request, "注册成功")
-        else:
-            return info_page(request, "数据格式不合法")
+class UserOrderView(View):
 
+    @login_required
     def get(self, request):
-        return render(request, "account/register.html")
+        orders = Order.objects.filter(Customer_id=request.user)
+        if not orders:
+            return info_page(request, "暂时没有订单")
+        return render(request, 'goods/orders.html', {'orders': orders})

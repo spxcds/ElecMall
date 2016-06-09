@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from account.models import Customer
+
 # Create your models here.
 
 class GOODSCATAGORY(models.Model):
@@ -24,3 +26,18 @@ class Goods(models.Model):
         db_table = 'goods' 
     def __str__(self): 
         return self.GoodsName
+
+class Order(models.Model):
+    id = models.AutoField(primary_key=True, db_index=True)
+    Order_time = models.DateTimeField(auto_now=True)
+    Customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    Goods_id = models.ForeignKey(Goods, on_delete=models.CASCADE)
+    Goods_num = models.IntegerField()
+    Goods_price = models.IntegerField()
+    Order_total = models.IntegerField()
+
+    class Meta:
+        db_table = 'order'
+    def __str__(self): 
+        return self.id
+

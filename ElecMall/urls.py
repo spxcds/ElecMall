@@ -21,7 +21,7 @@ from django.contrib import admin
 from . import views
 from django.views.generic import TemplateView
 from account.views import UserRegisterView, UserLoginView, UserLogoutView, UserEditView
-from goods.views import GoodsShowView, GoodsShowItemView
+from goods.views import GoodsShowView, GoodsShowItemView, UserOrderView
 from utils.captcha.views import show_captcha
 
 urlpatterns = [
@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^account/login/$', UserLoginView.as_view()),
     url(r'^account/logout/$', UserLogoutView.as_view()),
     url(r'^account/settings/$', UserEditView.as_view()),
+    url(r'^account/orders/$', UserOrderView.as_view()),
 
     url(r'^captcha/$', show_captcha),
 

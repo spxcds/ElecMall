@@ -1,66 +1,67 @@
-<html lang="zh-cn">
+<html lang='zh-cn'>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='renderer' content='webkit'>
     <title>
         ElecMall
     </title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/todc-bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/global.css" rel="stylesheet">
+    <link href='/static/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='/static/css/todc-bootstrap.min.css' rel='stylesheet'>
+    <link href='/static/css/global.css' rel='stylesheet'>
 </head>
 
 <body>
 
 <!-- nav begin -->
-<nav class="navbar navbar-masthead navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+<nav class='navbar navbar-masthead navbar-default navbar-static-top'>
+    <div class='container'>
+        <div class='navbar-header'>
+            <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar'
+                    aria-expanded='false' aria-controls='navbar'>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
             </button>
-            <a class="navbar-brand" href="/">ElecMall</a>
+            <a class='navbar-brand' href='/'>ElecMall</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/goods/phone/">手机</a></li>
-                <li><a href="/goods/camera/">照相机</a></li>
-                <li><a href="/goods/notebook/">笔记本  </a></li>
-                <li><a href="/goods/tv/">电视机</a></li>
-                <li><a href="/goods/allInOne/">一体机</a></li>
+        <div id='navbar' class='navbar-collapse collapse'>
+            <ul class='nav navbar-nav'>
+                <li><a href='/goods/phone/'>手机</a></li>
+                <li><a href='/goods/camera/'>照相机</a></li>
+                <li><a href='/goods/notebook/'>笔记本  </a></li>
+                <li><a href='/goods/tv/'>电视机</a></li>
+                <li><a href='/goods/allInOne/'>一体机</a></li>
             </ul>
             {% if request.session.user_id %}
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">
+                <ul class='nav navbar-nav navbar-right'>
+                    <li class='dropdown'>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true'
+                           aria-expanded='false'>
                             {% if request.user %}
                                 {{ request.user.Nickname }}
                             {% else %}
                                 设置
                             {% endif %}
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/account/settings/">个人信息</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/account/logout/">退出</a></li>
+                            <span class='caret'></span></a>
+                        <ul class='dropdown-menu'>
+                            <li><a href='/account/orders/'>个人订单</a></li>
+                            <li><a href='/account/settings/'>个人信息</a></li>
+                            <li role='separator' class='divider'></li>
+                            <li><a href='/account/logout/'>退出</a></li>
                         </ul>
                     </li>
                 </ul>
             {% else %}
-                <ul class="nav navbar-nav navbar-right">
+                <ul class='nav navbar-nav navbar-right'>
                     <li>
-                        <a href="/account/register/">
+                        <a href='/account/register/'>
                             注册
                         </a>
                     </li>
                     <li>
-                        <a href="/account/login/">
+                        <a href='/account/login/'>
                             登录
                         </a>
                     </li>
@@ -75,13 +76,13 @@
 {% block body %}{% endblock %}
 <!-- custom body end -->
 
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
+<script src='/static/js/jquery.min.js'></script>
+<script src='/static/js/bootstrap.min.js'></script>
 
 {% block js_block %}{% endblock %}
 <!-- footer begin -->
-<div class="footer">
-    <p class="text-muted text-center">Copyright © 2016 <a href="https://github.com/spxcds">spxcds</a> & Simplan & Xiaofa Xu</p>
+<div class='footer'>
+    <p class='text-muted text-center'>Copyright © 2016 <a href='https://github.com/spxcds'>spxcds</a> & Simplan & Xiaofa Xu</p>
 </div>
 <!-- footer end -->
 </body>
